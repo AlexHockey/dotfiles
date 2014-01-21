@@ -1,14 +1,36 @@
 " Autoload vimrc when it changes.
 autocmd! bufwritepost .vimrc source %
 
-" Load all plugins
-call pathogen#infect()
-
-" Use ',' as a leader key as it's easier to type than '\'
-let mapleader = ","
-
 " We don't want vi compatibility.
 set nocompatible
+
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+"                          PLUGIN INSTALLATION
+"-----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+Bundle 'kien/ctrlp.vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'vim-scripts/DoxygenToolkit.vim'
+Bundle 'uggedal/go-vim'
+Bundle 'hdima/python-syntax'
+Bundle 'AlexHockey/ultisnips'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'Valloric/YouCompleteMe'
+
+" Use langauage-specific plugins and indentation rules.
+filetype plugin indent on
 
 " Enable the backspace key in insert mode
 " See http://vim.wikia.com/wiki/Backspace_and_delete_problems
@@ -17,9 +39,6 @@ set backspace=indent,eol,start
 " Syntax highlighting should be on
 syntax on
 colorscheme ajh
-
-" Use langauage-specific plugins and indentation rules.
-filetype plugin indent on
 
 " Settings for the status bar.  This must be done after setting the colorscheme
 " as this seems to mess up the status bar.
@@ -138,6 +157,9 @@ let g:DoxygenToolkit_briefTag_pre = ""
 "                             KEY MAPS
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
+
+" Use ',' as a leader key as it's easier to type than '\'
+let mapleader = ","
 
 " Map ; to : in command mode (as it's easier to type)
 nmap ; :
