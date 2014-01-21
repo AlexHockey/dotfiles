@@ -85,7 +85,10 @@ if has('gui_running')
   " Settings for GUI mode
 
   " Change the font and font size.
-  set guifont=Consolas\ 10
+  let _=system('fc-list | grep -i Consolas')
+  if !v:shell_error
+    set guifont=Consolas\ 10
+  endif
 
   " Maximise the window (on Windows)
   " http://vim.wikia.com/wiki/Maximize_or_set_initial_window_size
