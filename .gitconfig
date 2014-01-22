@@ -1,0 +1,14 @@
+[user]
+  name = Alex Hockey
+  email = alex.hockey@metaswitch.com
+[color]
+  ui = true
+[push]
+  default = upstream
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+[merge]
+  conflictstyle = diff3
