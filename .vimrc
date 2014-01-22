@@ -27,7 +27,10 @@ Bundle 'AlexHockey/ultisnips'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'Valloric/YouCompleteMe'
+
+if v:version >= 704  " YouCompleteMe requires a super-recent version of Vim.
+  Bundle 'Valloric/YouCompleteMe'
+endif
 
 " Use langauage-specific plugins and indentation rules.
 filetype plugin indent on
