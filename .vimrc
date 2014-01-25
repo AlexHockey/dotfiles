@@ -27,6 +27,8 @@ Bundle 'AlexHockey/ultisnips'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-fugitive'
+"Bundle 'bling/vim-airline'
 
 if v:version >= 704  " YouCompleteMe requires a super-recent version of Vim.
   Bundle 'Valloric/YouCompleteMe'
@@ -43,24 +45,31 @@ set backspace=indent,eol,start
 syntax on
 colorscheme ajh
 
-" Settings for the status bar.  This must be done after setting the colorscheme
-" as this seems to mess up the status bar.
-hi User1 guifg=#eea040 guibg=#222222 ctermfg=172 ctermbg=235
-hi User2 guifg=#dd3333 guibg=#222222 ctermfg=160 ctermbg=235
-hi User3 guifg=#ff66ff guibg=#222222 ctermfg=201 ctermbg=235
-hi User4 guifg=#a0ee40 guibg=#222222 ctermfg=83  ctermbg=235
-hi User5 guifg=#eeee40 guibg=#222222 ctermfg=226 ctermbg=235
+if 1
+  " Settings for the status bar.  This must be done after setting the colorscheme
+  " as this seems to mess up the status bar.
+  hi User1 guifg=#eea040 guibg=#222222 ctermfg=172 ctermbg=235
+  hi User2 guifg=#dd3333 guibg=#222222 ctermfg=160 ctermbg=235
+  hi User3 guifg=#ff66ff guibg=#222222 ctermfg=201 ctermbg=235
+  hi User4 guifg=#a0ee40 guibg=#222222 ctermfg=83  ctermbg=235
+  hi User5 guifg=#eeee40 guibg=#222222 ctermfg=226 ctermbg=235
+  hi User6 guifg=#afffff guibg=#222222 ctermfg=159 ctermbg=235
 
-set statusline=
-set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%5*%{&ff}%*            "file format
-set statusline +=%3*%y%*                "file type
-set statusline +=%4*\ %<%F%*            "full path
-set statusline +=%2*%m%*                "modified flag
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*               "total lines
-set statusline +=%1*%4v\ %*             "virtual column number
-set statusline +=%2*0x%04B\ %*          "character under cursor
+  set statusline=
+  set statusline +=%6*%{fugitive#statusline()}\ %* "Git branch
+  "set statusline +=%4*%<%F\ %*            "full path
+  set statusline +=%3*%t%*            "file name
+  set statusline +=%2*%m%*                "modified flag
+  set statusline +=%4*\ %<%{getcwd()}%*
+  "set statusline +=%5*%{&ff}%*            "file format
+  "set statusline +=%3*%y%*                "file type
+  "set statusline +=%1*%=\ %n\ %*            "buffer number
+  set statusline +=%=
+  set statusline +=%1*%5l%*             "current line
+  set statusline +=%2*/%L%*               "total lines
+  set statusline +=%1*%4v\ %*             "virtual column number
+  "set statusline +=%2*0x%04B\ %*          "character under cursor
+endif
 
 set laststatus=2
 
@@ -140,6 +149,9 @@ set nowrap
 " Search for tag files in the current directory, and all parent directories.
 set tags=tags;/
 
+" Ignore binary files in tab completion, Ctrl-P, etc.
+set wildignore+=*.o,*.so,*.git/*
+
 " Correct filetypes for debian special files and markdown.
 au BufNewFile,BufRead *.d set filetype=sh
 au BufNewFile,BufRead *.md set filetype=markdown
@@ -168,34 +180,39 @@ let g:DoxygenToolkit_briefTag_pre = ""
 let mapleader = ","
 
 " Map ; to : in command mode (as it's easier to type)
-nmap ; :
+nnoremap ; :
 
 " Common typos
-nmap :Q :q
-nmap :X :x
-nmap :W :w
+nnoremap :Q :q
+nnoremap :X :x
+nnoremap :W :w
 
 " Replace thw word under the cursor with the text in the clipboard
-:nmap <Leader>r ciw<C-r>0<ESC>
+nnoremap <Leader>r ciw<C-r>0<ESC>
 
 " Make HOME put the cursor at the start of the text on this line, rather than
 " the start of the line.
 inoremap <HOME> <ESC>I
 
 " Grep for word under the cursor.
-:nmap <Leader>gw :grep -r <cword> .<CR>
+nnoremap <Leader>gw :grep -r <cword> .<CR>
 
 function! FoldArgumentsOntoMultipleLines()
     substitute@,\s*@,\r@ge
     normal v``="
 endfunction
-nmap <leader>9 :call FoldArgumentsOntoMultipleLines()<CR>
+nnoremap <leader>9 :call FoldArgumentsOntoMultipleLines()<CR>
 
-nmap <F2> :w<CR>
-imap <F2> <Esc>:w<CR>
-imap <C-Enter> <ESC>o
-imap <S-Enter> <ESC>O
-imap <C-S-Enter> <ENTER><ESC>O
+nnoremap <F2> :w<CR>
+inoremap <F2> <Esc>:w<CR>
+inoremap <C-Enter> <ESC>o
+inoremap <S-Enter> <ESC>O
+inoremap <C-S-Enter> <ENTER><ESC>O
+nnoremap <Enter> o<ESC>
+nnoremap <bs> kdd
+
+nnoremap <F8> :tnext<cr>
+nnoremap <F7> :tprev<cr>
 
 cnoremap <leader>us e ~/.vim/bundle/ultisnips/UltiSnips/
 
@@ -204,6 +221,12 @@ nmap <leader>rw "ryiw:%s/<C-r>r//gc<left><left><left>
 
 "Taken from http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 set completeopt=longest,menuone
+
+"------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+"                             REFACTORINGS
+"------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
@@ -216,7 +239,7 @@ set completeopt=longest,menuone
 
 " Use the project root for Ctrl-P searches (this is the folder that contains
 " .git).
-let g:ctrlp_working_path_mode = ''
+let g:ctrlp_working_path_mode = 'r'
 
 " Useful bindings (find file, find buffer, find recent).
 :nmap <Leader>ff :<C-U>CtrlP<CR>

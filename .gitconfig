@@ -12,3 +12,5 @@
   co = checkout
 [merge]
   conflictstyle = diff3
+[core]
+	excludesfile = /home/alex/.gitignore_global

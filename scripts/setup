@@ -14,4 +14,6 @@ fi
 
 if [[ ! -f ~/.gitconfig ]]; then
   ln -s $DOTFILES/.gitconfig ~/.gitconfig
+  ln -s $DOTFILES/.gitignore_global ~/.gitignore_global
+  git config --global core.excludesfile ~/.gitignore_global
 fi

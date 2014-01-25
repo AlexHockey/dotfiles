@@ -69,7 +69,7 @@ hi Special          guifg=#ffff80     guibg=NONE        gui=NONE      ctermfg=22
 hi Delimiter        guifg=#00A0A0     guibg=NONE        gui=NONE      ctermfg=37     ctermbg=NONE        cterm=NONE
 hi Operator         guifg=white       guibg=NONE        gui=NONE      ctermfg=white  ctermbg=NONE        cterm=NONE
 
-hi shVariable       guifg=#afffff
+hi shVariable       guifg=#afffff ctermfg=159
 hi pythonStrFormatting guifg=#FFD2A7
 hi VisibleWhitespace             guifg=NONE guibg=#afffff gui=NONE
 
