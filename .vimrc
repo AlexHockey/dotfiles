@@ -19,16 +19,17 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'kien/ctrlp.vim'
-Bundle 'Raimondi/delimitMate'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
-Bundle 'uggedal/go-vim'
 Bundle 'hdima/python-syntax'
 Bundle 'AlexHockey/ultisnips'
 Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
+"Bundle 'uggedal/go-vim'
+"Bundle 'Raimondi/delimitMate'
+"Bundle 'tpope/vim-rails'
 "Bundle 'bling/vim-airline'
+Bundle 'python.vim'
 
 if v:version >= 704  " YouCompleteMe requires a super-recent version of Vim.
   Bundle 'Valloric/YouCompleteMe'
@@ -37,23 +38,27 @@ endif
 " Use langauage-specific plugins and indentation rules.
 filetype plugin indent on
 
-" Enable the backspace key in insert mode
-" See http://vim.wikia.com/wiki/Backspace_and_delete_problems
+" Enable the backspace key in insert mode See
+" http://vim.wikia.com/wiki/Backspace_and_delete_problems
 set backspace=indent,eol,start
 
 " Syntax highlighting should be on
 syntax on
 colorscheme ajh
+"colorscheme monokai
+
+set list
+set listchars=tab:▸\ ,
 
 if 1
   " Settings for the status bar.  This must be done after setting the colorscheme
   " as this seems to mess up the status bar.
-  hi User1 guifg=#eea040 guibg=#222222 ctermfg=172 ctermbg=235
-  hi User2 guifg=#dd3333 guibg=#222222 ctermfg=160 ctermbg=235
-  hi User3 guifg=#ff66ff guibg=#222222 ctermfg=201 ctermbg=235
-  hi User4 guifg=#a0ee40 guibg=#222222 ctermfg=83  ctermbg=235
-  hi User5 guifg=#eeee40 guibg=#222222 ctermfg=226 ctermbg=235
-  hi User6 guifg=#afffff guibg=#222222 ctermfg=159 ctermbg=235
+  hi User1 guifg=#eea040 guibg=#3a3a3a ctermfg=172 ctermbg=237
+  hi User2 guifg=#dd3333 guibg=#3a3a3a ctermfg=160 ctermbg=237
+  hi User3 guifg=#ff66ff guibg=#3a3a3a ctermfg=201 ctermbg=237
+  hi User4 guifg=#a0ee40 guibg=#3a3a3a ctermfg=83  ctermbg=237
+  hi User5 guifg=#eeee40 guibg=#3a3a3a ctermfg=226 ctermbg=237
+  hi User6 guifg=#afffff guibg=#3a3a3a ctermfg=159 ctermbg=237
 
   set statusline=
   set statusline +=%6*%{fugitive#statusline()}\ %* "Git branch
@@ -170,6 +175,15 @@ let is_bash=1
 let g:DoxygenToolkit_commentType = "C++"
 let g:DoxygenToolkit_briefTag_pre = ""
 
+" Show syntax highlighting groups for word under cursor
+"nmap <leader>z :call <SID>SynStack()<CR>
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
 "                             KEY MAPS
@@ -206,6 +220,7 @@ nnoremap <leader>9 :call FoldArgumentsOntoMultipleLines()<CR>
 nnoremap <F2> :w<CR>
 inoremap <F2> <Esc>:w<CR>
 inoremap <C-Enter> <ESC>o
+
 inoremap <S-Enter> <ESC>O
 inoremap <C-S-Enter> <ENTER><ESC>O
 nnoremap <Enter> o<ESC>
@@ -227,6 +242,9 @@ set completeopt=longest,menuone
 "                             REFACTORINGS
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
+vnoremap <leader>if "zdOif ()<cr>{<cr>}<esc>k"zp>`]<esc>kkla
+nnoremap <leader>uw ^mz/{<cr>"zdi{V'zd"zP<`]:noh<cr>
+vnoremap <leader>rj :s/\s*\\$/\=repeat(' ', 80-col('.')).'\'<cr>:noh<cr>
 
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
@@ -239,7 +257,7 @@ set completeopt=longest,menuone
 
 " Use the project root for Ctrl-P searches (this is the folder that contains
 " .git).
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = ''
 
 " Useful bindings (find file, find buffer, find recent).
 :nmap <Leader>ff :<C-U>CtrlP<CR>
@@ -284,3 +302,7 @@ function! g:UltiSnips_Complete()
 endfunction
 
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+"set flp=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+set flp=^\\s*\\(\\d\\+[\\]:.)}\\t]\\\\|-\\)\\s\\s\\+
+"set flp=\\s*-\\s*
+set formatoptions+=n
