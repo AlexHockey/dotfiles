@@ -1,16 +1,17 @@
 [user]
-  name = Alex Hockey
-  email = alex.hockey@metaswitch.com
+	name = Alex Hockey
+	email = alex.hockey@metaswitch.com
 [color]
-  ui = true
+	ui = true
 [push]
-  default = upstream
+	default = upstream
 [alias]
-  st = status
-  ci = commit
-  br = branch
-  co = checkout
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	up = "!git fetch --all -p; git merge --ff-only @{u}"
 [merge]
-  conflictstyle = diff3
+	conflictstyle = diff3
 [core]
 	excludesfile = /home/alex/.gitignore_global

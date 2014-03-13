@@ -7,25 +7,25 @@ endif
 
 let colors_name = "ajh"
 
-hi Normal          guifg=#f6f3e8 guibg=#121212 ctermfg=255 ctermbg=233
+hi Normal          guifg=#f6f3e8 guibg=#080808 ctermfg=255 ctermbg=232
 
 "" Colours with a charcoal background (used for the normal text).
-hi Orange          guifg=#eea040 guibg=#121212 ctermfg=172 ctermbg=233
-hi Red             guifg=#dd3333 guibg=#121212 ctermfg=160 ctermbg=233
-hi Pink            guifg=#ff66ff guibg=#121212 ctermfg=201 ctermbg=233
-hi PinkBold        guifg=#ff66ff guibg=#121212 ctermfg=201 ctermbg=233  gui=BOLD
-hi LightGreen      guifg=#a0ee40 guibg=#121212 ctermfg=83  ctermbg=233
-hi Green           guifg=#a8ff60 guibg=#121212 ctermfg=10  ctermbg=233
-hi Cyan            guifg=#afffff guibg=#121212 ctermfg=159 ctermbg=233
-hi Grey            guifg=#626262 guibg=#121212 ctermfg=241 ctermbg=233
-hi GreyItalic      guifg=#626262 guibg=#121212 ctermfg=241 ctermbg=233 gui=ITALIC
-hi Yellow          guifg=#ffff80 guibg=#121212 ctermfg=191 ctermbg=233
-hi Salmon          guifg=#FF8787 guibg=#121212 ctermfg=210 ctermbg=233
-hi Ochre           guifg=#FFD2A7 guibg=#121212 ctermfg=186 ctermbg=233
-hi Blue            guifg=#9090FF guibg=#121212 ctermfg=12  ctermbg=233
-hi Purple          guifg=#9932CC guibg=#121212 ctermfg=92  ctermbg=233
-hi Teal            guifg=#00A0A0 guibg=#121212 ctermfg=37  ctermbg=233
-hi Invisible       guifg=#121212 guibg=#121212 ctermfg=233 ctermbg=233
+hi Orange          guifg=#eea040 guibg=#080808 ctermfg=172 ctermbg=232
+hi Red             guifg=#dd3333 guibg=#080808 ctermfg=160 ctermbg=232
+hi Pink            guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232
+hi PinkBold        guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232  gui=BOLD
+hi LightGreen      guifg=#a0ee40 guibg=#080808 ctermfg=83  ctermbg=232
+hi Green           guifg=#a8ff60 guibg=#080808 ctermfg=10  ctermbg=232
+hi Cyan            guifg=#afffff guibg=#080808 ctermfg=159 ctermbg=232
+hi Grey            guifg=#626262 guibg=#080808 ctermfg=241 ctermbg=232
+hi GreyItalic      guifg=#626262 guibg=#080808 ctermfg=241 ctermbg=232 gui=ITALIC
+hi Yellow          guifg=#ffff80 guibg=#080808 ctermfg=191 ctermbg=232
+hi Salmon          guifg=#FF8787 guibg=#080808 ctermfg=210 ctermbg=232
+hi Ochre           guifg=#FFD2A7 guibg=#080808 ctermfg=186 ctermbg=232
+hi Blue            guifg=#9090FF guibg=#080808 ctermfg=12  ctermbg=232
+hi Purple          guifg=#9932CC guibg=#080808 ctermfg=92  ctermbg=232
+hi Teal            guifg=#00A0A0 guibg=#080808 ctermfg=37  ctermbg=232
+hi Invisible       guifg=#080808 guibg=#080808 ctermfg=232 ctermbg=232
 hi CherryBG        guifg=#f6f3e8 guibg=#ff005f ctermfg=241 ctermbg=197
 
 " Colours with a light grey background (used for the status line)
@@ -46,9 +46,9 @@ hi ModeMsg          guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=bl
 
 if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guifg=NONE    guibg=#262D51   gui=NONE      ctermfg=NONE   ctermbg=17    cterm=NONE
-  hi CursorColumn   guifg=NONE    guibg=#121212   gui=NONE      ctermfg=NONE   ctermbg=16    cterm=NONE
-  hi MatchParen     guifg=#f6f3e8 guibg=#857b6f   gui=BOLD      ctermfg=233    ctermbg=101   cterm=BOLD
-  hi Pmenu          guifg=#f6f3e8 guibg=#444444   gui=NONE      ctermfg=233    ctermbg=59    cterm=NONE
+  hi CursorColumn   guifg=NONE    guibg=#080808   gui=NONE      ctermfg=NONE   ctermbg=16    cterm=NONE
+  hi MatchParen     guifg=#eeeeee guibg=#857b6f   gui=BOLD      ctermfg=255    ctermbg=101   cterm=BOLD
+  hi Pmenu          guifg=#eeeeee guibg=#444444   gui=NONE      ctermfg=255    ctermbg=59    cterm=NONE
   hi PmenuSel       guifg=#000000 guibg=#cae682   gui=NONE      ctermfg=black  ctermbg=186   cterm=NONE
   hi Search         guifg=NONE    guibg=#2f2f00   gui=underline ctermfg=NONE   ctermbg=16    cterm=underline
 endif
@@ -104,3 +104,8 @@ hi! link ColorColumn    BackgroundSL
 hi link CtrlPMode1 PinkBoldSL
 hi link CtrlPMode2 LightGreenSL
 hi! link qfLineNr Ochre
+
+hi! link markdownH1 PinkBold
+hi! link markdownH2 PinkBold
+hi! link markdownH3 PinkBold
+hi! link markdownH4 PinkBold
