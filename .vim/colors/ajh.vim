@@ -109,3 +109,11 @@ hi! link markdownH1 PinkBold
 hi! link markdownH2 PinkBold
 hi! link markdownH3 PinkBold
 hi! link markdownH4 PinkBold
+
+hi! link rustMacro Cyan
+hi! link rustAttribute Cyan
+hi! link rustDeriving Cyan
+hi! link rustType Cyan
+hi! link rustModPath Normal
+hi! link rustSigil Teal
+hi! link rustSelf Ochre
