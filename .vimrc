@@ -25,11 +25,10 @@ Bundle 'AlexHockey/ultisnips'
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'uggedal/go-vim'
-"Bundle 'Raimondi/delimitMate'
-"Bundle 'tpope/vim-rails'
 "Bundle 'bling/vim-airline'
 Bundle 'python.vim'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'wting/rust.vim'
 
 if v:version >= 704  " YouCompleteMe requires a super-recent version of Vim.
   Bundle 'Valloric/YouCompleteMe'
@@ -86,7 +85,7 @@ set expandtab
 
 " Strip trailing whitespace on save - for all file types.
 " See http://vim.wikia.com/wiki/Remove_unwanted_spaces
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 " Automatic wrapping of comments at 80 characters, and put a gutter at a width
 " of 80 characters.
@@ -104,7 +103,7 @@ if has('gui_running')
   " Change the font and font size.
   let _=system('fc-list | grep -i Consolas')
   if !v:shell_error
-    set guifont=Consolas\ 10
+    set guifont=Consolas\ 11
   endif
 
   " Maximise the window (on Windows)
@@ -155,14 +154,14 @@ set nowrap
 set tags=tags;/
 
 " Ignore binary files in tab completion, Ctrl-P, etc.
-set wildignore+=*.o,*.so,*.git/*
+set wildignore+=*.o,*.so,*.git/*,*.svn/*
 
 " Correct filetypes for debian special files and markdown.
 au BufNewFile,BufRead *.d set filetype=sh
 au BufNewFile,BufRead *.md set filetype=markdown
 
 " Make grep ignore common false positives - binary files (-I) and tags.
-set grepprg=grep\ -nI\ --exclude\ 'tags'\ $*\ /dev/null
+set grepprg=grep\ -nI\ --exclude\ 'tags'\ $*\ /dev/null\ --exclude-dir=.svn
 
 " C formatting options
 set cino=(0
@@ -175,14 +174,10 @@ let is_bash=1
 let g:DoxygenToolkit_commentType = "C++"
 let g:DoxygenToolkit_briefTag_pre = ""
 
-" Show syntax highlighting groups for word under cursor
-"nmap <leader>z :call <SID>SynStack()<CR>
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+" Use hyphen as a bullet in comments.
+set flp=^\\s*\\(\\d\\+[\\]:.)}\\t]\\\\|-\\)\\s\\s\\+
+" Recognize numbered lists in comments.
+set formatoptions+=n
 
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
@@ -237,6 +232,17 @@ nmap <leader>rw "ryiw:%s/<C-r>r//gc<left><left><left>
 "Taken from http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 set completeopt=longest,menuone
 
+" Strip trailing whitespace from the current file.
+nmap <leader>sw :%s/\s*$//<CR>:noh<CR>:w<CR>
+
+" Output the syntax highlighting groups under the cursor.
+nmap <leader>z :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" Blow away all vim backups.
+cmap <leader>zap !( cd ~/.tmp/vim && rm $( ls -A ) )
+
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
 "                             REFACTORINGS
@@ -245,6 +251,7 @@ set completeopt=longest,menuone
 vnoremap <leader>if "zdOif ()<cr>{<cr>}<esc>k"zp>`]<esc>kkla
 nnoremap <leader>uw ^mz/{<cr>"zdi{V'zd"zP<`]:noh<cr>
 vnoremap <leader>rj :s/\s*\\$/\=repeat(' ', 80-col('.')).'\'<cr>:noh<cr>
+vnoremap <leader>#if "zdO#if 0<cr><esc>"zPo#endif<esc>jdd
 
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
@@ -302,7 +309,4 @@ function! g:UltiSnips_Complete()
 endfunction
 
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-"set flp=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
-set flp=^\\s*\\(\\d\\+[\\]:.)}\\t]\\\\|-\\)\\s\\s\\+
-"set flp=\\s*-\\s*
-set formatoptions+=n
+
