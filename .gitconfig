@@ -15,3 +15,4 @@
 	conflictstyle = diff3
 [core]
 	excludesfile = /home/alex/.gitignore_global
+	editor = vim
