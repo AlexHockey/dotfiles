@@ -29,9 +29,11 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'python.vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'wting/rust.vim'
+Bundle 'greyblake/vim-preview'
+Bundle 'plasticboy/vim-markdown'
 
 if v:version >= 704  " YouCompleteMe requires a super-recent version of Vim.
-  Bundle 'Valloric/YouCompleteMe'
+"  Bundle 'Valloric/YouCompleteMe'
 endif
 
 " Use langauage-specific plugins and indentation rules.
@@ -85,7 +87,7 @@ set expandtab
 
 " Strip trailing whitespace on save - for all file types.
 " See http://vim.wikia.com/wiki/Remove_unwanted_spaces
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Automatic wrapping of comments at 80 characters, and put a gutter at a width
 " of 80 characters.
@@ -227,7 +229,8 @@ nnoremap <F7> :tprev<cr>
 cnoremap <leader>us e ~/.vim/bundle/ultisnips/UltiSnips/
 
 nmap <leader>rr :%s/
-nmap <leader>rw "ryiw:%s/<C-r>r//gc<left><left><left>
+nmap <leader>rw "ryiw:%s/<C-r>r/<C-r>r/gc<left><left><left>
+vmap <leader>rv "ry<Esc>:%s/<C-r>r//gc<left><left><left>
 
 "Taken from http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 set completeopt=longest,menuone
@@ -251,7 +254,7 @@ cmap <leader>zap !( cd ~/.tmp/vim && rm $( ls -A ) )
 vnoremap <leader>if "zdOif ()<cr>{<cr>}<esc>k"zp>`]<esc>kkla
 nnoremap <leader>uw ^mz/{<cr>"zdi{V'zd"zP<`]:noh<cr>
 vnoremap <leader>rj :s/\s*\\$/\=repeat(' ', 80-col('.')).'\'<cr>:noh<cr>
-vnoremap <leader>#if "zdO#if 0<cr><esc>"zPo#endif<esc>jdd
+vnoremap <leader>#if "zdO#if 0<cr>#endif<esc>"zP
 
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
@@ -271,42 +274,29 @@ let g:ctrlp_working_path_mode = ''
 :nmap <Leader>fb :<C-U>CtrlPBuffer<CR>
 :nmap <Leader>fr :<C-U>CtrlPMRU<CR>
 
-
-"------------------------------------------------------------------------------
-" clang_complete configuration.
-
-"Select the first completion option but don't insert it into the code.
-let g:clang_auto_select=1
-let g:clang_hl_errors=0
-let g:clang_complete_macros=1
-let g:clang_close_preview=1
-let g:clang_snippets=1
-let g:clang_snippets_engine='ultisnips'
-
-
 "------------------------------------------------------------------------------
 " YouCompleteMe settings.
 
 " Don't clutter the UI with compilation warnings/errors.
-let g:ycm_enable_diagnostic_signs=0
-let g:ycm_enable_diagnostic_highlighting=0
-let g:ycm_echo_current_diagnostic=0
-
-" Make ultisnips work again.
-function! g:UltiSnips_Complete()
-    call UltiSnips_ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips_JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
-
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+"let g:ycm_enable_diagnostic_signs=0
+"let g:ycm_enable_diagnostic_highlighting=0
+"let g:ycm_echo_current_diagnostic=0
+"
+"" Make ultisnips work again.
+"function! g:UltiSnips_Complete()
+"    call UltiSnips_ExpandSnippet()
+"    if g:ulti_expand_res == 0
+"        if pumvisible()
+"            return "\<C-n>"
+"        else
+"            call UltiSnips_JumpForwards()
+"            if g:ulti_jump_forwards_res == 0
+"               return "\<TAB>"
+"            endif
+"        endif
+"    endif
+"    return ""
+"endfunction
+"
+"au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 

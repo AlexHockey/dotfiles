@@ -13,15 +13,18 @@ hi Normal          guifg=#f6f3e8 guibg=#080808 ctermfg=255 ctermbg=232
 hi Orange          guifg=#eea040 guibg=#080808 ctermfg=172 ctermbg=232
 hi Red             guifg=#dd3333 guibg=#080808 ctermfg=160 ctermbg=232
 hi Pink            guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232
-hi PinkBold        guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232  gui=BOLD
+hi PinkBold        guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232 gui=BOLD
 hi LightGreen      guifg=#a0ee40 guibg=#080808 ctermfg=83  ctermbg=232
+hi LightGreenBold  guifg=#a0ee40 guibg=#080808 ctermfg=83  ctermbg=232 gui=BOLD
 hi Green           guifg=#a8ff60 guibg=#080808 ctermfg=10  ctermbg=232
 hi Cyan            guifg=#afffff guibg=#080808 ctermfg=159 ctermbg=232
+hi CyanBold        guifg=#afffff guibg=#080808 ctermfg=159 ctermbg=232 gui=BOLD
 hi Grey            guifg=#626262 guibg=#080808 ctermfg=241 ctermbg=232
 hi GreyItalic      guifg=#626262 guibg=#080808 ctermfg=241 ctermbg=232 gui=ITALIC
 hi Yellow          guifg=#ffff80 guibg=#080808 ctermfg=191 ctermbg=232
 hi Salmon          guifg=#FF8787 guibg=#080808 ctermfg=210 ctermbg=232
 hi Ochre           guifg=#FFD2A7 guibg=#080808 ctermfg=186 ctermbg=232
+hi OchreBold       guifg=#FFD2A7 guibg=#080808 ctermfg=186 ctermbg=232 gui=BOLD
 hi Blue            guifg=#9090FF guibg=#080808 ctermfg=12  ctermbg=232
 hi Purple          guifg=#9932CC guibg=#080808 ctermfg=92  ctermbg=232
 hi Teal            guifg=#00A0A0 guibg=#080808 ctermfg=37  ctermbg=232
@@ -105,15 +108,9 @@ hi link CtrlPMode1 PinkBoldSL
 hi link CtrlPMode2 LightGreenSL
 hi! link qfLineNr Ochre
 
-hi! link markdownH1 PinkBold
-hi! link markdownH2 PinkBold
-hi! link markdownH3 PinkBold
-hi! link markdownH4 PinkBold
-
-hi! link rustMacro Cyan
-hi! link rustAttribute Cyan
-hi! link rustDeriving Cyan
-hi! link rustType Cyan
-hi! link rustModPath Normal
-hi! link rustSigil Teal
-hi! link rustSelf Ochre
+hi! link MarkdownH1 CyanBold
+hi! link MarkdownH2 CyanBold
+hi! link MarkdownH3 Cyan
+hi! link MarkdownH4 Ochre
+hi! link MarkdownH5 Ochre
+hi! link MarkdownH6 Ochre
