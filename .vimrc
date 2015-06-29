@@ -19,21 +19,18 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/DoxygenToolkit.vim'
-Bundle 'hdima/python-syntax'
+"Bundle 'klen/python-mode'
 Bundle 'AlexHockey/ultisnips'
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'bling/vim-airline'
-Bundle 'python.vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'wting/rust.vim'
 Bundle 'greyblake/vim-preview'
 Bundle 'plasticboy/vim-markdown'
 
 if v:version >= 704  " YouCompleteMe requires a super-recent version of Vim.
-"  Bundle 'Valloric/YouCompleteMe'
+  Bundle 'Valloric/YouCompleteMe'
 endif
 
 " Use langauage-specific plugins and indentation rules.
@@ -46,36 +43,30 @@ set backspace=indent,eol,start
 " Syntax highlighting should be on
 syntax on
 colorscheme ajh
-"colorscheme monokai
 
+" Show tabs and wrapped lines
 set list
 set listchars=tab:▸\ ,
+let &showbreak='▸ '
 
-if 1
-  " Settings for the status bar.  This must be done after setting the colorscheme
-  " as this seems to mess up the status bar.
-  hi User1 guifg=#eea040 guibg=#3a3a3a ctermfg=172 ctermbg=237
-  hi User2 guifg=#dd3333 guibg=#3a3a3a ctermfg=160 ctermbg=237
-  hi User3 guifg=#ff66ff guibg=#3a3a3a ctermfg=201 ctermbg=237
-  hi User4 guifg=#a0ee40 guibg=#3a3a3a ctermfg=83  ctermbg=237
-  hi User5 guifg=#eeee40 guibg=#3a3a3a ctermfg=226 ctermbg=237
-  hi User6 guifg=#afffff guibg=#3a3a3a ctermfg=159 ctermbg=237
+" Settings for the status bar.  This must be done after setting the color scheme
+" as this seems to mess up the status bar.
+hi User1 guifg=#eea040 guibg=#3a3a3a ctermfg=172 ctermbg=237
+hi User2 guifg=#dd3333 guibg=#3a3a3a ctermfg=160 ctermbg=237
+hi User3 guifg=#ff66ff guibg=#3a3a3a ctermfg=201 ctermbg=237
+hi User4 guifg=#a0ee40 guibg=#3a3a3a ctermfg=83  ctermbg=237
+hi User5 guifg=#eeee40 guibg=#3a3a3a ctermfg=226 ctermbg=237
+hi User6 guifg=#afffff guibg=#3a3a3a ctermfg=159 ctermbg=237
 
-  set statusline=
-  set statusline +=%6*%{fugitive#statusline()}\ %* "Git branch
-  "set statusline +=%4*%<%F\ %*            "full path
-  set statusline +=%3*%t%*            "file name
-  set statusline +=%2*%m%*                "modified flag
-  set statusline +=%4*\ %<%{getcwd()}%*
-  "set statusline +=%5*%{&ff}%*            "file format
-  "set statusline +=%3*%y%*                "file type
-  "set statusline +=%1*%=\ %n\ %*            "buffer number
-  set statusline +=%=
-  set statusline +=%1*%5l%*             "current line
-  set statusline +=%2*/%L%*               "total lines
-  set statusline +=%1*%4v\ %*             "virtual column number
-  "set statusline +=%2*0x%04B\ %*          "character under cursor
-endif
+set statusline=
+set statusline +=%6*%{fugitive#statusline()}\ %* "Git branch
+set statusline +=%3*%t%*            "file name
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%4*\ %<%{getcwd()}%*
+set statusline +=%=
+set statusline +=%1*%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
 
 set laststatus=2
 
@@ -108,10 +99,6 @@ if has('gui_running')
     set guifont=Consolas\ 11
   endif
 
-  " Maximise the window (on Windows)
-  " http://vim.wikia.com/wiki/Maximize_or_set_initial_window_size
-  "au GUIEnter * simalt ~x
-
   " Make the unnamed register the same as the clipboard register.  The unnamed
   " register is where text is stored when you yank it.  By making it the same
   " as the clipboard, yanking and pasting in Vim affects the system clipboard.
@@ -126,7 +113,8 @@ if has('gui_running')
   " directory (so they don't turn up in svn/git status).
   " http://stackoverflow.com/questions/4824188/git-ignore-vim-temporary-files
   if has("win32") || has("win16")
-    " TODO the same thing fow windows.
+    set backupdir=%HOMEPATH%/.tmp/vim
+    set directory=%HOMEPATH%/.tmp/vim
   else
     set backupdir=/home/$USER/.tmp/vim
     set directory=/home/$USER/.tmp/vim
@@ -135,6 +123,9 @@ if has('gui_running')
   " Don't exit vim when closing buffers.
   :cnoreabbrev q bd
   :cnoreabbrev x w<bar>bd
+
+  " Turn on spellchecking
+  set spell
 endif
 
 " Navigation thought quickfix lists.
@@ -148,9 +139,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-" Don't wrap lines if they don't fit into the window.
-set nowrap
 
 " Search for tag files in the current directory, and all parent directories.
 set tags=tags;/
@@ -172,12 +160,9 @@ set cinoptions+=g0
 " Bash formatting options.
 let is_bash=1
 
-" Doxygen config.
-let g:DoxygenToolkit_commentType = "C++"
-let g:DoxygenToolkit_briefTag_pre = ""
-
 " Use hyphen as a bullet in comments.
 set flp=^\\s*\\(\\d\\+[\\]:.)}\\t]\\\\|-\\)\\s\\s\\+
+
 " Recognize numbered lists in comments.
 set formatoptions+=n
 
@@ -198,12 +183,8 @@ nnoremap :Q :q
 nnoremap :X :x
 nnoremap :W :w
 
-" Replace thw word under the cursor with the text in the clipboard
+" Replace the word under the cursor with the text in the clipboard
 nnoremap <Leader>r ciw<C-r>0<ESC>
-
-" Make HOME put the cursor at the start of the text on this line, rather than
-" the start of the line.
-inoremap <HOME> <ESC>I
 
 " Grep for word under the cursor.
 nnoremap <Leader>gw :grep -r <cword> .<CR>
@@ -217,11 +198,6 @@ nnoremap <leader>9 :call FoldArgumentsOntoMultipleLines()<CR>
 nnoremap <F2> :w<CR>
 inoremap <F2> <Esc>:w<CR>
 inoremap <C-Enter> <ESC>o
-
-inoremap <S-Enter> <ESC>O
-inoremap <C-S-Enter> <ENTER><ESC>O
-nnoremap <Enter> o<ESC>
-nnoremap <bs> kdd
 
 nnoremap <F8> :tnext<cr>
 nnoremap <F7> :tprev<cr>
@@ -246,6 +222,25 @@ nmap <leader>z :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 " Blow away all vim backups.
 cmap <leader>zap !( cd ~/.tmp/vim && rm $( ls -A ) )
 
+" Rebuild tags.
+function! RebuildTags(cwd)
+python << EOF
+import vim, os
+cwd = vim.eval("a:cwd")
+elems = cwd.split(os.sep)
+elems = list(reversed(elems))
+
+for levels_up in range(len(elems)):
+  target = os.sep.join(reversed(["tags"] + elems[levels_up : ]))
+  if os.path.isfile(target):
+    print "Rebuilding tagfile '%s' ..." % target
+    os.system("( cd $( dirname %s ) && ctags . )" % target)
+    print "Done"
+EOF
+endfunction
+
+command! Tagme call RebuildTags(getcwd())
+
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
 "                             REFACTORINGS
@@ -262,41 +257,38 @@ vnoremap <leader>#if "zdO#if 0<cr>#endif<esc>"zP
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
 
-"---------------------------------------------------------------------------
+"------------------------------------------------------------------------------
+" Doxygen config.
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_briefTag_pre = ""
+
+"------------------------------------------------------------------------------
 " CtrlP settings
 
 " Use the project root for Ctrl-P searches (this is the folder that contains
 " .git).
 let g:ctrlp_working_path_mode = ''
+let g:ctrlp_extensions = ['tag']
 
 " Useful bindings (find file, find buffer, find recent).
-:nmap <Leader>ff :<C-U>CtrlP<CR>
-:nmap <Leader>fb :<C-U>CtrlPBuffer<CR>
-:nmap <Leader>fr :<C-U>CtrlPMRU<CR>
+nmap <Leader>ff :<C-U>CtrlP<CR>
+nmap <Leader>fb :<C-U>CtrlPBuffer<CR>
+nmap <Leader>fr :<C-U>CtrlPMRU<CR>
+nmap <leader>ft :<C-U>CtrlPTag<CR>
+
+"------------------------------------------------------------------------------
+" Ultisnips settings
+
+" Change the completion trigger to not interfere with YCM
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 "------------------------------------------------------------------------------
 " YouCompleteMe settings.
 
 " Don't clutter the UI with compilation warnings/errors.
-"let g:ycm_enable_diagnostic_signs=0
-"let g:ycm_enable_diagnostic_highlighting=0
-"let g:ycm_echo_current_diagnostic=0
-"
-"" Make ultisnips work again.
-"function! g:UltiSnips_Complete()
-"    call UltiSnips_ExpandSnippet()
-"    if g:ulti_expand_res == 0
-"        if pumvisible()
-"            return "\<C-n>"
-"        else
-"            call UltiSnips_JumpForwards()
-"            if g:ulti_jump_forwards_res == 0
-"               return "\<TAB>"
-"            endif
-"        endif
-"    endif
-"    return ""
-"endfunction
-"
-"au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-
+let g:ycm_enable_diagnostic_signs=0
+let g:ycm_enable_diagnostic_highlighting=0
+let g:ycm_echo_current_diagnostic=0
+"let g:ycm_complete_in_comments=0
+"let g:ycm_complete_in_strings=0
+"let g:ycm_collect_identifiers_from_tags_files=1

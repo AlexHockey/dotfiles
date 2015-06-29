@@ -60,7 +60,7 @@ hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=NO
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white  ctermbg=203     cterm=BOLD
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white  ctermbg=203     cterm=BOLD
 
-hi! link NonText Invisible
+hi! link NonText Grey
 
 hi! link LineNr Teal
 hi! link SpecialKey Grey

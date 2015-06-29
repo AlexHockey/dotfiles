@@ -4,16 +4,18 @@
 [color]
 	ui = true
 [push]
-	default = upstream
+	default = nothing
 [alias]
 	st = status
 	ci = commit
 	br = branch
 	co = checkout
 	up = "!git fetch --all -p; git merge --ff-only @{u}"
-  smup = "!git submodule update --init"
+	smup = !git submodule update --init --recursive
 [merge]
 	conflictstyle = diff3
 [core]
 	excludesfile = /home/alex/.gitignore_global
 	editor = vim
+[status]
+	submoduleSummary = true
