@@ -7,28 +7,28 @@ endif
 
 let colors_name = "ajh"
 
-hi Normal          guifg=#f6f3e8 guibg=#080808 ctermfg=255 ctermbg=232
+hi Normal          guifg=#f6f3e8 guibg=#1c1c1c ctermfg=255 ctermbg=234
 
 "" Colours with a charcoal background (used for the normal text).
-hi Orange          guifg=#eea040 guibg=#080808 ctermfg=172 ctermbg=232
-hi Red             guifg=#dd3333 guibg=#080808 ctermfg=160 ctermbg=232
-hi Pink            guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232
-hi PinkBold        guifg=#ff66ff guibg=#080808 ctermfg=201 ctermbg=232 gui=BOLD
-hi LightGreen      guifg=#a0ee40 guibg=#080808 ctermfg=83  ctermbg=232
-hi LightGreenBold  guifg=#a0ee40 guibg=#080808 ctermfg=83  ctermbg=232 gui=BOLD
-hi Green           guifg=#a8ff60 guibg=#080808 ctermfg=10  ctermbg=232
-hi Cyan            guifg=#afffff guibg=#080808 ctermfg=159 ctermbg=232
-hi CyanBold        guifg=#afffff guibg=#080808 ctermfg=159 ctermbg=232 gui=BOLD
-hi Grey            guifg=#626262 guibg=#080808 ctermfg=241 ctermbg=232
-hi GreyItalic      guifg=#626262 guibg=#080808 ctermfg=241 ctermbg=232 gui=ITALIC
-hi Yellow          guifg=#ffff80 guibg=#080808 ctermfg=191 ctermbg=232
-hi Salmon          guifg=#FF8787 guibg=#080808 ctermfg=210 ctermbg=232
-hi Ochre           guifg=#FFD2A7 guibg=#080808 ctermfg=186 ctermbg=232
-hi OchreBold       guifg=#FFD2A7 guibg=#080808 ctermfg=186 ctermbg=232 gui=BOLD
-hi Blue            guifg=#9090FF guibg=#080808 ctermfg=12  ctermbg=232
-hi Purple          guifg=#9932CC guibg=#080808 ctermfg=92  ctermbg=232
-hi Teal            guifg=#00A0A0 guibg=#080808 ctermfg=37  ctermbg=232
-hi Invisible       guifg=#080808 guibg=#080808 ctermfg=232 ctermbg=232
+hi Orange          guifg=#eea040 guibg=#1c1c1c ctermfg=172 ctermbg=234
+hi Red             guifg=#dd3333 guibg=#1c1c1c ctermfg=160 ctermbg=234
+hi Pink            guifg=#ff66ff guibg=#1c1c1c ctermfg=201 ctermbg=234
+hi PinkBold        guifg=#ff66ff guibg=#1c1c1c ctermfg=201 ctermbg=234 gui=BOLD
+hi LightGreen      guifg=#a0ee40 guibg=#1c1c1c ctermfg=83  ctermbg=234
+hi LightGreenBold  guifg=#a0ee40 guibg=#1c1c1c ctermfg=83  ctermbg=234 gui=BOLD
+hi Green           guifg=#a8ff60 guibg=#1c1c1c ctermfg=10  ctermbg=234
+hi Cyan            guifg=#afffff guibg=#1c1c1c ctermfg=159 ctermbg=234
+hi CyanBold        guifg=#afffff guibg=#1c1c1c ctermfg=159 ctermbg=234 gui=BOLD
+hi Grey            guifg=#626262 guibg=#1c1c1c ctermfg=241 ctermbg=234
+hi GreyItalic      guifg=#626262 guibg=#1c1c1c ctermfg=241 ctermbg=234 gui=ITALIC
+hi Yellow          guifg=#ffff80 guibg=#1c1c1c ctermfg=191 ctermbg=234
+hi Salmon          guifg=#FF8787 guibg=#1c1c1c ctermfg=210 ctermbg=234
+hi Ochre           guifg=#FFD2A7 guibg=#1c1c1c ctermfg=186 ctermbg=234
+hi OchreBold       guifg=#FFD2A7 guibg=#1c1c1c ctermfg=186 ctermbg=234 gui=BOLD
+hi Blue            guifg=#9090FF guibg=#1c1c1c ctermfg=12  ctermbg=234
+hi Purple          guifg=#9932CC guibg=#1c1c1c ctermfg=92  ctermbg=234
+hi Teal            guifg=#00A0A0 guibg=#1c1c1c ctermfg=37  ctermbg=234
+hi Invisible       guifg=#1c1c1c guibg=#1c1c1c ctermfg=234 ctermbg=234
 hi CherryBG        guifg=#f6f3e8 guibg=#ff005f ctermfg=241 ctermbg=197
 
 " Colours with a light grey background (used for the status line)
@@ -49,7 +49,7 @@ hi ModeMsg          guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=bl
 
 if version >= 700 " Vim 7.x specific colors
   hi CursorLine     guifg=NONE    guibg=#262D51   gui=NONE      ctermfg=NONE   ctermbg=17    cterm=NONE
-  hi CursorColumn   guifg=NONE    guibg=#080808   gui=NONE      ctermfg=NONE   ctermbg=16    cterm=NONE
+  hi CursorColumn   guifg=NONE    guibg=#1c1c1c   gui=NONE      ctermfg=NONE   ctermbg=16    cterm=NONE
   hi MatchParen     guifg=#eeeeee guibg=#857b6f   gui=BOLD      ctermfg=255    ctermbg=101   cterm=BOLD
   hi Pmenu          guifg=#eeeeee guibg=#444444   gui=NONE      ctermfg=255    ctermbg=59    cterm=NONE
   hi PmenuSel       guifg=#000000 guibg=#cae682   gui=NONE      ctermfg=black  ctermbg=186   cterm=NONE
