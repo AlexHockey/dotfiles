@@ -60,9 +60,10 @@ hi User6 guifg=#afffff guibg=#3a3a3a ctermfg=159 ctermbg=237
 
 set statusline=
 set statusline +=%6*%{fugitive#statusline()}\ %* "Git branch
-set statusline +=%3*%t%*            "file name
+"set statusline +=%3*%t%*            "file name
+set statusline +=%4*%F%*            "file name
 set statusline +=%2*%m%*                "modified flag
-set statusline +=%4*\ %<%{getcwd()}%*
+"set statusline +=%4*\ %<%{getcwd()}%*
 set statusline +=%=
 set statusline +=%1*%5l%*             "current line
 set statusline +=%2*/%L%*               "total lines
@@ -183,24 +184,14 @@ nnoremap :Q :q
 nnoremap :X :x
 nnoremap :W :w
 
-" Replace the word under the cursor with the text in the clipboard
-nnoremap <Leader>r ciw<C-r>0<ESC>
-
 " Grep for word under the cursor.
 nnoremap <Leader>gw :grep -r <cword> .<CR>
 
-function! FoldArgumentsOntoMultipleLines()
-    substitute@,\s*@,\r@ge
-    normal v``="
-endfunction
-nnoremap <leader>9 :call FoldArgumentsOntoMultipleLines()<CR>
-
 nnoremap <F2> :w<CR>
 inoremap <F2> <Esc>:w<CR>
-inoremap <C-Enter> <ESC>o
 
-nnoremap <F8> :tnext<cr>
 nnoremap <F7> :tprev<cr>
+nnoremap <F8> :tnext<cr>
 
 cnoremap <leader>us e ~/.vim/bundle/ultisnips/UltiSnips/
 
@@ -210,6 +201,7 @@ vmap <leader>rv "ry<Esc>:%s/<C-r>r//gc<left><left><left>
 
 "Taken from http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 set completeopt=longest,menuone
+set wildmode=longest,list
 
 " Strip trailing whitespace from the current file.
 nmap <leader>sw :%s/\s*$//<CR>:noh<CR>:w<CR>
@@ -221,6 +213,12 @@ nmap <leader>z :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 " Blow away all vim backups.
 cmap <leader>zap !( cd ~/.tmp/vim && rm $( ls -A ) )
+
+function! FoldArgumentsOntoMultipleLines()
+    substitute@,\s*@,\r@ge
+    normal v``="
+endfunction
+nnoremap <leader>9 :call FoldArgumentsOntoMultipleLines()<CR>
 
 " Rebuild tags.
 function! RebuildTags(cwd)
@@ -269,6 +267,7 @@ let g:DoxygenToolkit_briefTag_pre = ""
 " .git).
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_extensions = ['tag']
+let g:ctrlp_max_files=0
 
 " Useful bindings (find file, find buffer, find recent).
 nmap <Leader>ff :<C-U>CtrlP<CR>
@@ -292,3 +291,5 @@ let g:ycm_echo_current_diagnostic=0
 "let g:ycm_complete_in_comments=0
 "let g:ycm_complete_in_strings=0
 "let g:ycm_collect_identifiers_from_tags_files=1
+"let g:loaded_youcompleteme = 1
+let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python': 1 }
