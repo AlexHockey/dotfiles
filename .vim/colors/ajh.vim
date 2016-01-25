@@ -63,6 +63,7 @@ hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=wh
 hi! link NonText Grey
 
 hi! link LineNr Teal
+hi! link CursorLineNr Teal
 hi! link SpecialKey Grey
 
 " Syntax highlighting
