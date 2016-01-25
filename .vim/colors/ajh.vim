@@ -44,7 +44,7 @@ hi StatusLine       guibg=#3a3a3a gui=italic    ctermfg=237 ctermbg=237  cterm=i
 hi StatusLineNC     guibg=#3a3a3a gui=NONE      ctermbg=237  cterm=NONE
 hi VertSplit        guifg=#3a3a3a guibg=#3a3a3a ctermfg=16  ctermbg=16
 hi Cursor           guifg=#000000 guibg=#ffffff ctermfg=0   ctermbg=15
-hi Visual           guifg=NONE        guibg=#262D51     gui=NONE      ctermfg=NONE   ctermbg=17     cterm=NONE
+hi Visual           guifg=NONE        guibg=#262D51     gui=NONE      ctermfg=NONE   ctermbg=18     cterm=NONE
 hi ModeMsg          guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=black  ctermbg=189     cterm=BOLD
 
 if version >= 700 " Vim 7.x specific colors
@@ -53,7 +53,7 @@ if version >= 700 " Vim 7.x specific colors
   hi MatchParen     guifg=#eeeeee guibg=#857b6f   gui=BOLD      ctermfg=255    ctermbg=101   cterm=BOLD
   hi Pmenu          guifg=#eeeeee guibg=#444444   gui=NONE      ctermfg=255    ctermbg=59    cterm=NONE
   hi PmenuSel       guifg=#000000 guibg=#cae682   gui=NONE      ctermfg=black  ctermbg=186   cterm=NONE
-  hi Search         guifg=NONE    guibg=#2f2f00   gui=underline ctermfg=NONE   ctermbg=16    cterm=underline
+  hi Search         guifg=NONE    guibg=#2f2f00   gui=underline ctermfg=NONE   ctermbg=236    cterm=underline
 endif
 
 hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=NONE   ctermbg=NONE        cterm=undercurl      guisp=#FF6C60 " undercurl color

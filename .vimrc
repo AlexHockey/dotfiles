@@ -27,6 +27,7 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'vim-indent-object'
 Bundle 'kana/vim-textobj-user'
 Bundle 'glts/vim-textobj-comment'
+Bundle 'scrooloose/nerdtree'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Bundle 'Valloric/YouCompleteMe'
@@ -372,3 +373,6 @@ let g:ycm_echo_current_diagnostic=0
 
 " Turn off semantic completion - this is personal preference.
 let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python': 1 }
+
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = 'v'
