@@ -14,20 +14,21 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-
+Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'AlexHockey/ultisnips'
-Bundle 'tpope/vim-endwise'
-Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-fugitive'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'wting/rust.vim'
-Bundle 'greyblake/vim-preview'
-Bundle 'plasticboy/vim-markdown'
+Bundle 'tpope/vim-endwise'
 Bundle 'vim-indent-object'
 Bundle 'kana/vim-textobj-user'
 Bundle 'glts/vim-textobj-comment'
-Bundle 'scrooloose/nerdtree'
+
+" Language-specific plugins.
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'wting/rust.vim'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'greyblake/vim-preview'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Bundle 'Valloric/YouCompleteMe'
@@ -168,7 +169,7 @@ set ignorecase
 set smartcase
 
 " Make Ctrl-C escape *and* clear the current highlighting.
-map <C-C> <esc>:noh<cr>
+nmap <C-C> <esc>:noh<cr>
 
 " Search for tag files in the current directory, and all parent directories.
 set tags=tags;/
