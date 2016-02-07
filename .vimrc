@@ -407,18 +407,9 @@ function! GenerateTags()
   let b:lines = b:lines . max_num
 endfunction
 
-function! GetTagUnderCursor()
-  let name = GetTagName(line("."))
-  return name
-endfunction
-
-" This function does binary search in the array of tag names and returns
-" corresponding tag.
-function! GetTagName(curline)
-
+function! IndexFile()
 python << EOF
 import vim, os, re, subprocess
-line = int(vim.eval("a:curline"))
 tags = subprocess.check_output([
   'ctags',
   '-o',
@@ -446,16 +437,43 @@ for t in tags.split("\n"):
 
       table.append((l, name))
 
-found=''
-for ix in xrange(len(table)):
-  if line >= table[ix][0]:
+table_str = ",".join("%s,%s" % (t[0], t[1]) for t in table)
+vim.command("let b:tags = '%s'" % table_str)
+EOF
+endfunction
 
-    if (ix+1 >= len(table)) or (line < table[ix+1][0]):
-      found = table[ix][1]
-      break
+function! GetTagUnderCursor()
+  let name = GetTagName(line("."))
+  return name
+endfunction
+
+function! GetTagName(curline)
+  if !exists("b:tags")
+    return ''
+  endif
+python << EOF
+import vim
+
+line = int(vim.eval("a:curline"))
+table_str = vim.eval("b:tags")
+found = ''
+
+if table_str:
+  table_iter = table_str.split(',')
+  table = zip(map(int, table_iter[::2]), table_iter[1::2])
+
+  for ix in xrange(len(table)):
+    if line >= table[ix][0]:
+
+      if (ix+1 >= len(table)) or (line < table[ix+1][0]):
+        found = table[ix][1]
+        break
 
 vim.command("let name = '%s'" % found)
 EOF
 
 return name
 endfunction
+
+autocmd BufWritePost * call IndexFile()
+autocmd BufReadPre * call IndexFile()
