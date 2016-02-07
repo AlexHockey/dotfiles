@@ -14,8 +14,7 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'AlexHockey/ultisnips'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
@@ -101,10 +100,7 @@ if has('gui_running')
   " Settings for GUI mode
 
   " Change the font and font size.
-  let _=system('fc-list | grep -i Consolas')
-  if !v:shell_error
-    set guifont=Consolas\ 11
-  endif
+  set guifont=DejaVu\ Sans\ Mono\ 12
 
   " Make the unnamed register the same as the clipboard register.  The unnamed
   " register is where text is stored when you yank it.  By making it the same
