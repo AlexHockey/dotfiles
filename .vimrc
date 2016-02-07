@@ -66,12 +66,13 @@ hi User6 guifg=#afffff guibg=#3a3a3a ctermfg=159 ctermbg=237
 
 set statusline =
 set statusline +=%6*%{fugitive#statusline()}\ %* " Git branch
-set statusline +=%4*%F%*                         " file name
 set statusline +=%2*%m%*                         " modified flag
+set statusline +=%4*%-0.30F\ %*                         " file name
+set statusline +=%3*%-0.40{GetTagUnderCursor()}%*   " Current function
 set statusline +=%=                              " from here on, align-right
 set statusline +=%1*%5l%*                        " current line
 set statusline +=%2*/%L%*                        " total lines
-set statusline +=%1*%4v\ %*                      " virtual column number
+"set statusline +=%1*%4v\ %*                      " virtual column number
 
 " Set the status line to be visible at all times.
 set laststatus=2
@@ -373,3 +374,88 @@ let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python'
 
 let g:NERDTreeDirArrowExpandable = '>'
 let g:NERDTreeDirArrowCollapsible = 'v'
+
+
+let g:ctags_pattern="^\\(.\\{-}\\)\t.\\{-}\t\\(\\d*\\).*"
+
+function! GenerateTags()
+  let ctags = system('ctags -n --sort=no -o -'.' "'.expand('%').'"')
+
+  let max_num = "9999999"
+  let b:length = strlen(max_num)
+  let b:lines = ''
+  let b:tags = ''
+
+  " strlen(spaces) must be at least b:length.
+  let spaces = '               '
+  let len = strlen(ctags)
+  let index = 0
+  let offset = 0
+
+  while offset < len
+    let one_tag = matchstr(ctags, "[^\n]*", offset)
+    let tag_name = substitute(one_tag, g:ctags_pattern, '\1', '')
+    let tag_line_num = substitute(one_tag, g:ctags_pattern, '\2', '')
+    let b:lines = b:lines . strpart(tag_line_num.spaces, 0, b:length)
+    let b:lines = b:lines . strpart(index.spaces, 0, b:length)
+    let b:tags = b:tags . tag_name . "\n"
+    let index = index + strlen(tag_name) + 1
+    let offset = offset + strlen(one_tag) + 1
+  endwhile
+
+  let b:lines = b:lines . max_num
+  let b:lines = b:lines . max_num
+endfunction
+
+function! GetTagUnderCursor()
+  let name = GetTagName(line("."))
+  return name
+endfunction
+
+" This function does binary search in the array of tag names and returns
+" corresponding tag.
+function! GetTagName(curline)
+
+python << EOF
+import vim, os, re, subprocess
+line = int(vim.eval("a:curline"))
+tags = subprocess.check_output([
+  'ctags',
+  '-o',
+  '-',
+  '-n',
+  '--sort=no',
+  vim.eval("expand('%:p')"),
+])
+table = []
+
+tagline_regex = re.compile(r'([^\t]*)\t([^\t]*)\t(\d+);"\t([^\t]*)\t([^\t]*)?')
+class_regex = re.compile(r'class:([^ \t]+)')
+
+for t in tags.split("\n"):
+  m = tagline_regex.match(t)
+  if m:
+    if m.group(4) == "f":
+      l = int(m.group(3))
+
+      class_match = class_regex.match(m.group(5))
+      if class_match:
+        name = class_match.group(1) + "::" + m.group(1)
+      else:
+        name = m.group(1)
+
+      table.append((l, name))
+
+found=''
+for ix in xrange(len(table)):
+  if line >= table[ix][0]:
+
+    if (ix+1 >= len(table)) or (line < table[ix+1][0]):
+      found = table[ix][1]
+      break
+
+vim.command("let name = '%s'" % found)
+EOF
+
+return name
+endfunction
