@@ -420,7 +420,7 @@ tags = subprocess.check_output([
 ])
 table = []
 
-tagline_regex = re.compile(r'([^\t]*)\t([^\t]*)\t(\d+);"\t([^\t]*)\t([^\t]*)?')
+tagline_regex = re.compile(r'([^\t]*)\t([^\t]*)\t(\d+);"\t([^\t]*)\t?([^\t]*)?')
 class_regex = re.compile(r'class:([^ \t]+)')
 
 for t in tags.split("\n"):
