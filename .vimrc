@@ -104,7 +104,7 @@ if has('gui_running')
   " Settings for GUI mode
 
   " Change the font and font size.
-  set guifont=DejaVu\ Sans\ Mono\ 12
+  set guifont=DejaVu\ Sans\ Mono\ 10
 
   " Make the unnamed register the same as the clipboard register.  The unnamed
   " register is where text is stored when you yank it.  By making it the same
