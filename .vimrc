@@ -22,6 +22,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'vim-indent-object'
 Plugin 'kana/vim-textobj-user'
 Plugin 'glts/vim-textobj-comment'
+Plugin 'AlexHockey/current-function.vim'
 
 " Language-specific plugins.
 Plugin 'vim-ruby/vim-ruby'
@@ -69,8 +70,9 @@ hi User6 guifg=#afffff guibg=#3a3a3a ctermfg=159 ctermbg=237
 
 set statusline =
 set statusline +=%6*%{fugitive#statusline()}\ %* " Git branch
-set statusline +=%4*%F%*                         " file name
 set statusline +=%2*%m%*                         " modified flag
+set statusline +=%4*%-0.30F\ %*                  " file name
+set statusline +=%3*%-0.40{GetFunctionUnderCursor()}%*  " Current function
 set statusline +=%=                              " from here on, align-right
 set statusline +=%1*%5l%*                        " current line
 set statusline +=%2*/%L%*                        " total lines
@@ -373,6 +375,3 @@ let g:ycm_echo_current_diagnostic=0
 
 " Turn off semantic completion - this is personal preference.
 let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python': 1 }
-
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = 'v'
