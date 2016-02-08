@@ -423,7 +423,7 @@ tags = subprocess.check_output([
 ])
 table = []
 
-tagline_regex = re.compile(r'([^\t]*)\t([^\t]*)\t(\d+);"\t([^\t]*)\t?([^\t]*)?')
+tagline_regex = re.compile(r'([^\t]*)\t([^\t]*)\t(\d+);"\t([^\t]*)\t?(.*)?')
 class_regex = re.compile(r'class:([^ \t]+)')
 
 for t in tags.split("\n"):
@@ -432,7 +432,7 @@ for t in tags.split("\n"):
     if m.group(4) == "f":
       l = int(m.group(3))
 
-      class_match = class_regex.match(m.group(5))
+      class_match = class_regex.search(m.group(5))
       if class_match:
         name = class_match.group(1) + "::" + m.group(1)
       else:
