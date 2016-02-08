@@ -379,37 +379,6 @@ let g:NERDTreeDirArrowExpandable = '>'
 let g:NERDTreeDirArrowCollapsible = 'v'
 
 
-let g:ctags_pattern="^\\(.\\{-}\\)\t.\\{-}\t\\(\\d*\\).*"
-
-function! GenerateTags()
-  let ctags = system('ctags -n --sort=no -o -'.' "'.expand('%').'"')
-
-  let max_num = "9999999"
-  let b:length = strlen(max_num)
-  let b:lines = ''
-  let b:tags = ''
-
-  " strlen(spaces) must be at least b:length.
-  let spaces = '               '
-  let len = strlen(ctags)
-  let index = 0
-  let offset = 0
-
-  while offset < len
-    let one_tag = matchstr(ctags, "[^\n]*", offset)
-    let tag_name = substitute(one_tag, g:ctags_pattern, '\1', '')
-    let tag_line_num = substitute(one_tag, g:ctags_pattern, '\2', '')
-    let b:lines = b:lines . strpart(tag_line_num.spaces, 0, b:length)
-    let b:lines = b:lines . strpart(index.spaces, 0, b:length)
-    let b:tags = b:tags . tag_name . "\n"
-    let index = index + strlen(tag_name) + 1
-    let offset = offset + strlen(one_tag) + 1
-  endwhile
-
-  let b:lines = b:lines . max_num
-  let b:lines = b:lines . max_num
-endfunction
-
 function! IndexFile()
 python << EOF
 import vim, os, re, subprocess
@@ -421,7 +390,7 @@ tags = subprocess.check_output([
   '-n',
   '--sort=no',
   vim.eval("expand('%:p')"),
-])
+], stderr=open('/dev/null', 'w'))
 table = []
 
 tagline_regex = re.compile(r'([^\t]*)\t([^\t]*)\t(\d+);"\t([^\t]*)\t?(.*)?')
