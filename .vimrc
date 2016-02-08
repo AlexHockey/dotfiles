@@ -415,6 +415,7 @@ python << EOF
 import vim, os, re, subprocess
 tags = subprocess.check_output([
   'ctags',
+  '--options=NONE',
   '-o',
   '-',
   '-n',
