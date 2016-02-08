@@ -8,30 +8,33 @@ set nocompatible
 "-----------------------------------------------------------------------------
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'AlexHockey/ultisnips'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-endwise'
-Bundle 'vim-indent-object'
-Bundle 'kana/vim-textobj-user'
-Bundle 'glts/vim-textobj-comment'
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'AlexHockey/ultisnips'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'vim-indent-object'
+Plugin 'kana/vim-textobj-user'
+Plugin 'glts/vim-textobj-comment'
 
 " Language-specific plugins.
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'wting/rust.vim'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'greyblake/vim-preview'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'wting/rust.vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'greyblake/vim-preview'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
-  Bundle 'Valloric/YouCompleteMe'
+  Plugin 'Valloric/YouCompleteMe'
 endif
+
+call vundle#end()
 
 " Use langauage-specific plugins and indentation rules.
 filetype plugin indent on
