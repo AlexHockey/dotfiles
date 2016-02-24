@@ -28,8 +28,9 @@ Plugin 'AlexHockey/current-function.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'wting/rust.vim'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'greyblake/vim-preview'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Plugin 'Valloric/YouCompleteMe'
@@ -338,20 +339,25 @@ vnoremap <leader>#if "zdO#if 0<cr>#endif<esc>"zP
 "------------------------------------------------------------------------------
 
 "------------------------------------------------------------------------------
+" Vundle settings
+"------------------------------------------------------------------------------
+
+" Clone git modules over SSH.
+let g:vundle_default_git_proto = 'git'
+
+"------------------------------------------------------------------------------
 " CtrlP settings
 "------------------------------------------------------------------------------
 
 " Use the project root for Ctrl-P searches (this is the folder that contains
 " .git).
 let g:ctrlp_working_path_mode = ''
-"let g:ctrlp_extensions = ['tag']
 let g:ctrlp_max_files=0
 
 " Useful bindings (find file, find buffer, find recent).
 nmap <Leader>ff :<C-U>CtrlP<CR>
 nmap <Leader>fb :<C-U>CtrlPBuffer<CR>
 nmap <Leader>fr :<C-U>CtrlPMRU<CR>
-"nmap <leader>ft :<C-U>CtrlPTag<CR>
 
 "------------------------------------------------------------------------------
 " Ultisnips settings
@@ -362,7 +368,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Shortcut to go straight to the ultisnips folder (makes it easier to add new
 " snippets).
-cnoremap <leader>us e ~/.vim/bundle/ultisnips/UltiSnips/
+nnoremap <leader>us :e ~/.vim/bundle/ultisnips/UltiSnips/<CR>
 
 "------------------------------------------------------------------------------
 " YouCompleteMe settings.
@@ -375,3 +381,20 @@ let g:ycm_echo_current_diagnostic=0
 
 " Turn off semantic completion - this is personal preference.
 let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python': 1 }
+
+"------------------------------------------------------------------------------
+" Doxygen toolkit settings
+"------------------------------------------------------------------------------
+
+" Don't include '@brief' tags
+let g:DoxygenToolkit_briefTag_pre=""
+
+" Use C++ style triple-/ comments.
+let g:DoxygenToolkit_commentType = "C++"
+
+"------------------------------------------------------------------------------
+" Vim markdown settings
+"------------------------------------------------------------------------------
+
+" Disable folding - it's super annoying.
+let g:vim_markdown_folding_disabled = 1
