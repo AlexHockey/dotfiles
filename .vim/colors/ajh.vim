@@ -108,10 +108,3 @@ hi! link ColorColumn    BackgroundSL
 hi link CtrlPMode1 PinkBoldSL
 hi link CtrlPMode2 LightGreenSL
 hi! link qfLineNr Ochre
-
-hi! link MarkdownH1 CyanBold
-hi! link MarkdownH2 CyanBold
-hi! link MarkdownH3 Cyan
-hi! link MarkdownH4 Ochre
-hi! link MarkdownH5 Ochre
-hi! link MarkdownH6 Ochre
