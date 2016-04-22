@@ -130,8 +130,8 @@ if has('gui_running')
   endif
 
   " Don't exit vim when closing buffers.
-  :cnoreabbrev q bd
-  :cnoreabbrev x w<bar>bd
+  ":cnoreabbrev q bd
+  ":cnoreabbrev x w<bar>bd
 
   " Turn on spellchecking
   set spell
@@ -187,7 +187,7 @@ au BufNewFile,BufRead *.md set filetype=markdown
 set grepprg=grep\ -nI\ --exclude\ 'tags'\ $*\ /dev/null\ --exclude-dir=.svn\ --exclude\ \*.js
 
 " C formatting options
-set cino=(0,g0,:0
+set cino=(0,g0,:0,N-s
 
 " Format shell scripts as bash.
 let is_bash=1
