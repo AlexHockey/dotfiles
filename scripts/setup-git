@@ -3,15 +3,6 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES=$( cd $DIR/.. && pwd )
 
-if [[ ! -f ~/.vimrc ]]; then
-  ln -s $DOTFILES/.vimrc ~/.vimrc
-  ln -s $DOTFILES/.vim   ~/.vim
-
-  mkdir -p ~/.tmp/vim
-
-  vim +BundleInstall +qall
-fi
-
 if [[ ! -f ~/.gitconfig ]]; then
   ln -s $DOTFILES/.gitconfig ~/.gitconfig
   ln -s $DOTFILES/.gitignore_global ~/.gitignore_global
