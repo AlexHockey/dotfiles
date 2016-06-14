@@ -1,0 +1,6 @@
+--recurse=yes
+--exclude=".git"
+--c++-kinds=+p
+-I PJ_DECL
+-I PJ_DEF
+--fields=+l
