@@ -10,8 +10,8 @@
 	ci = commit
 	br = branch
 	co = checkout
-	up = "!git fetch --all -p; git merge --ff-only @{u}"
 	smup = !git submodule update --init --recursive
+  graph = !git log --graph --decorate
 [merge]
 	conflictstyle = diff3
 [core]
@@ -19,3 +19,5 @@
 	editor = vim
 [status]
 	submoduleSummary = true
+[log]
+  decorate = short
