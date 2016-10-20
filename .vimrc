@@ -389,6 +389,8 @@ let g:ycm_complete_in_comments=0
 " Turn off semantic completion - this is personal preference.
 let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python': 1 }
 
+let g:ycm_rust_src_path = '/home/alex/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+
 "------------------------------------------------------------------------------
 " Doxygen toolkit settings
 "------------------------------------------------------------------------------
