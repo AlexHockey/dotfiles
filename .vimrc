@@ -23,6 +23,7 @@ Plugin 'vim-indent-object'
 Plugin 'kana/vim-textobj-user'
 Plugin 'glts/vim-textobj-comment'
 Plugin 'AlexHockey/current-function.vim'
+"Plugin 'airblade/vim-gitgutter'
 
 " Language-specific plugins.
 Plugin 'vim-ruby/vim-ruby'
