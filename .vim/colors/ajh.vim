@@ -19,8 +19,8 @@ hi LightGreenBold  guifg=#a0ee40 guibg=#1c1c1c ctermfg=83  ctermbg=234 gui=BOLD
 hi Green           guifg=#a8ff60 guibg=#1c1c1c ctermfg=10  ctermbg=234
 hi Cyan            guifg=#afffff guibg=#1c1c1c ctermfg=159 ctermbg=234
 hi CyanBold        guifg=#afffff guibg=#1c1c1c ctermfg=159 ctermbg=234 gui=BOLD
-hi Grey            guifg=#626262 guibg=#1c1c1c ctermfg=241 ctermbg=234
-hi GreyItalic      guifg=#626262 guibg=#1c1c1c ctermfg=241 ctermbg=234 gui=ITALIC
+let Grey          = 'guifg=#626262 guibg=#1c1c1c ctermfg=241 ctermbg=234'
+let GreyItalic    = 'guifg=#626262 guibg=#1c1c1c ctermfg=241 ctermbg=234 gui=ITALIC'
 hi Yellow          guifg=#ffff80 guibg=#1c1c1c ctermfg=191 ctermbg=234
 hi Salmon          guifg=#FF8787 guibg=#1c1c1c ctermfg=210 ctermbg=234
 hi Ochre           guifg=#FFD2A7 guibg=#1c1c1c ctermfg=186 ctermbg=234
@@ -60,15 +60,15 @@ hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=NO
 hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white  ctermbg=203     cterm=BOLD
 hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=white  ctermbg=203     cterm=BOLD
 
-hi! link NonText Grey
+exe "hi NonText " . Grey
 
 hi! link LineNr Teal
 hi! link CursorLineNr Teal
-hi! link SpecialKey Grey
+exe "hi SpecialKey " . Grey
 
 " Syntax highlighting
-hi! link Comment GreyItalic
-hi! link String  Green
+exe "hi Comment " . GreyItalic
+hi String  guifg=#a8ff60 guibg=#1c1c1c ctermfg=10  ctermbg=234
 hi! link Number Pink
 hi! link Keyword Yellow
 hi! link PreProc Yellow

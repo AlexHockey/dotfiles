@@ -383,6 +383,9 @@ let g:ycm_enable_diagnostic_signs=0
 let g:ycm_enable_diagnostic_highlighting=0
 let g:ycm_echo_current_diagnostic=0
 
+" Don't complete in comments
+let g:ycm_complete_in_comments=0
+
 " Turn off semantic completion - this is personal preference.
 let g:ycm_filetype_specific_completion_to_disable = { 'c': 1, 'cpp': 1, 'python': 1 }
 
