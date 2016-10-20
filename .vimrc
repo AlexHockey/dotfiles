@@ -16,7 +16,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'AlexHockey/ultisnips'
+Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'vim-indent-object'
@@ -365,6 +365,9 @@ nmap <Leader>fr :<C-U>CtrlPMRU<CR>
 
 " Change the completion trigger to not interfere with YCM
 let g:UltiSnipsExpandTrigger="<c-j>"
+
+" Use the snippets in ~/.vim/snippets in addition to built in snippets.
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
 " Shortcut to go straight to the ultisnips folder (makes it easier to add new
 " snippets).

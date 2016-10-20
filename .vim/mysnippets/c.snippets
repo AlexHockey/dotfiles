@@ -1,0 +1,230 @@
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+priority 1
+
+snippet def "#define"
+#define ${1}
+endsnippet
+
+snippet sdef "safe #define"
+#ifndef ${1}
+#define ${1:SYMBOL} ${2:value}
+#endif
+endsnippet
+
+snippet ifndef "#ifndef ... #endif"
+#ifndef ${1/([A-Za-z0-9_]+).*/$1/}
+$0
+#endif
+endsnippet
+
+snippet #if "#if #endif" !b
+#if ${1:0}
+${VISUAL}${0:${VISUAL/(.*)/(?1::code)/}}
+#endif
+endsnippet
+
+snippet incl "#include local header"
+#include "${1:`!p snip.rv = snip.basename + '.h'`}"
+endsnippet
+
+snippet inc "#include system header"
+#include <$1>
+endsnippet
+
+snippet mark "#pragma mark (mark)"
+#if 0
+${1:#pragma mark -
+}#pragma mark $2
+#endif
+
+$0
+endsnippet
+
+snippet main "main() (main)"
+int main(int argc, char *argv[])
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+	return 0;
+}
+endsnippet
+
+snippet for "for loop (for)"
+for (${2:i} = 0; $2 < ${1:count}; ${3:++$2})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet fori "for int loop (fori)"
+for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet enum "Enumeration"
+enum ${1:name} { $0 };
+endsnippet
+
+snippet once "Include header once only guard"
+#ifndef ${1:`!p snip.rv = fn.upper().replace(".", "_") + "__"`}
+#define $1
+
+${0}
+
+#endif
+
+endsnippet
+
+snippet td "Typedef"
+typedef ${1:int} ${2:MyCustomType};
+endsnippet
+
+snippet while "while loop"
+while (${1:/* condition */})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet do "do...while loop (do)"
+do
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+while (${1:/* condition */});
+endsnippet
+
+snippet fprintf "fprintf ..."
+fprintf(${1:stderr}, "${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet if "if .. (if)"
+if (${1:/* condition */})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet else "else .. (else)"
+else
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet ife "if .. else (ife)"
+if (${1:/* condition */})
+{
+	${2:/* code */}
+}
+else
+{
+	${3:/* else */}
+}
+endsnippet
+
+snippet printf "printf .. (printf)"
+printf("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet error "TRC_ERROR"
+TRC_ERROR("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet warning "TRC_WARNING"
+TRC_WARNING("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet status "TRC_STATUS"
+TRC_STATUS("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet info "TRC_INFO"
+TRC_INFO("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet verbose "TRC_VERBOSE"
+TRC_VERBOSE("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet debug "TRC_DEBUG"
+TRC_DEBUG("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
+endsnippet
+
+snippet struct "struct"
+struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`}
+{
+	${0:/* data */}
+};
+endsnippet
+
+snippet fun "function" b
+${1:void} ${2:function_name}(${3})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet fund "function declaration" b
+${1:void} ${2:function_name}(${3});
+endsnippet
+
+snippet switch "Switch statement" !b
+switch ($1)
+{
+$2
+
+default:
+  break;
+}
+endsnippet
+
+snippet case "case label" !b
+case $1:
+  $2
+	break;
+endsnippet
+
+snippet copyright "Clearwater copyright statement" !b
+/**
+ * @file `!p res = fn` ${1:description}
+ *
+ * Project Clearwater - IMS in the Cloud
+ * Copyright (C) 2016  Metaswitch Networks Ltd
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version, along with the "Special Exception" for use of
+ * the program along with SSL, set forth below. This program is distributed
+ * in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+ * A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details. You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ *
+ * The author can be reached by email at clearwater@metaswitch.com or by
+ * post at Metaswitch Networks Ltd, 100 Church St, Enfield EN2 6BQ, UK
+ *
+ * Special Exception
+ * Metaswitch Networks Ltd  grants you permission to copy, modify,
+ * propagate, and distribute a work formed by combining OpenSSL with The
+ * Software, or a work derivative of such a combination, even if such
+ * copying, modification, propagation, or distribution would otherwise
+ * violate the terms of the GPL. You must comply with the GPL in all
+ * respects for all of the code used other than OpenSSL.
+ * "OpenSSL" means OpenSSL toolkit software distributed by the OpenSSL
+ * Project and licensed under the OpenSSL Licenses, or a work based on such
+ * software and licensed under the OpenSSL Licenses.
+ * "OpenSSL Licenses" means the OpenSSL License and Original SSLeay License
+ * under which the OpenSSL Project distributes the OpenSSL toolkit software,
+ * as those licenses appear in the file LICENSE-OPENSSL.
+ */
+
+$0
+endsnippet
+# vim:ft=snippets:
