@@ -32,6 +32,9 @@ Plugin 'wting/rust.vim'
 Plugin 'greyblake/vim-preview'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'vim-scripts/supp.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'cespare/vim-toml'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Plugin 'Valloric/YouCompleteMe'
@@ -226,7 +229,7 @@ nnoremap :X :x
 nnoremap :W :w
 
 " Grep for word under the cursor.
-nnoremap <Leader>gw :grep -r <cword> .<CR>
+nnoremap <Leader>gw :grep -rw <cword> .<CR>
 
 " Make F2 save the current file.
 nnoremap <F2> :w<CR>
