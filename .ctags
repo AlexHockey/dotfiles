@@ -1,5 +1,7 @@
 --recurse=yes
 --exclude=".git"
+--exclude="build"
+--exclude="usr"
 --c++-kinds=+p
 -I PJ_DECL
 -I PJ_DEF
