@@ -19,6 +19,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-abolish'
 Plugin 'vim-indent-object'
 Plugin 'kana/vim-textobj-user'
 Plugin 'glts/vim-textobj-comment'
@@ -35,9 +36,10 @@ Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'vim-scripts/supp.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'cespare/vim-toml'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
-  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
 endif
 
 call vundle#end()
@@ -188,7 +190,7 @@ au BufNewFile,BufRead *.d set filetype=sh
 au BufNewFile,BufRead *.md set filetype=markdown
 
 " Make grep ignore common false positives - binary files (-I) and tags.
-set grepprg=grep\ -nI\ --exclude\ 'tags'\ $*\ /dev/null\ --exclude-dir=.svn\ --exclude\ \*.js
+set grepprg=grep\ -nI\ --exclude\ 'tags'\ $*\ /dev/null\ --exclude-dir=.svn\ --exclude\ \*.js\ --exclude\ \*.memcheck
 
 " C formatting options
 set cino=(0,g0,:0,N-s
@@ -301,6 +303,9 @@ for levels_up in range(len(elems)):
 EOF
 endfunction
 command! Tagme call RebuildTags(getcwd())
+
+" Disable 'bracketed paste mode' which messes with xfce4 terminals
+set t_BE=
 
 "------------------------------------------------------------------------------
 "------------------------------------------------------------------------------
