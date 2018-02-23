@@ -18,6 +18,5 @@
 	excludesfile = /home/alex/.gitignore_global
 	editor = vim
 [status]
-	submoduleSummary = true
 [log]
   decorate = short
