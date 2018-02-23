@@ -55,11 +55,18 @@ catch(${1:...})
 endsnippet
 
 snippet forit "For loop with iterator" !b
-for($1::${2:iterator} ${3:it} = $4.begin();
+for ($1::${2:iterator} ${3:it} = $4.begin();
     $3 != $4.end();
     ++$3)
 {
   ${5:/* code */}
+}
+endsnippet
+
+snippet fore "For-each style for loop" !b
+for ($1 $2 : $3)
+{
+  ${4:/* code */}
 }
 endsnippet
 
@@ -73,7 +80,11 @@ std::cout << $1${2: << std::endl};
 endsnippet
 
 snippet del "Delete a pointer and NULL it" !b
-delete ${1:ptr}; $1 = NULL;$0
+delete ${1:ptr}; $1 = nullptr;$0
+endsnippet
+
+snippet tos "std::to_string" !b
+std::to_string($1)$0
 endsnippet
 
 # vim:ft=snippets
