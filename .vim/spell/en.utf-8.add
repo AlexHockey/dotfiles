@@ -26,3 +26,12 @@ metaswitch
 OpenSSL
 GPL
 aggregator
+config
+chronos
+cpp
+struct
+memcached
+S4
+microservice
+testcases
+testcase
