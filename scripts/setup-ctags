@@ -3,6 +3,6 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOTFILES=$( cd $DIR/.. && pwd )
 
-if [[ ! -f ~/.gitconfig ]]; then
+if [[ ! -f ~/.ctags ]]; then
   ln -s $DOTFILES/.ctags ~/.ctags
 fi
