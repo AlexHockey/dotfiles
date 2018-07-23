@@ -37,6 +37,8 @@ Plugin 'vim-scripts/supp.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'cespare/vim-toml'
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'ekalinin/Dockerfile.vim'
+"Plugin 'vim-airline/vim-airline'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
