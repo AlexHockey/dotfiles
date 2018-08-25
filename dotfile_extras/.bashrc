@@ -1,8 +1,9 @@
 export TERM=xterm-256color
+source /usr/lib/git-core/git-sh-prompt
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;35m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
 
-ssh-add ~/.ssh/dogfood-cw-keypair
-ssh-add ~/.ssh/xubuntu-work-rsa
+ssh-add ~/.ssh/mobile_engineering_keypair >/dev/null 2>&1
+ssh-add ~/.ssh/xubuntu18.04-work >/dev/null 2>&1
 
 export EDITOR=vim
 export HISTTIMEFORMAT="%d/%m/%y %T "
@@ -26,3 +27,5 @@ make-secure-rpm()
   fi
   make rpm-only REPO_SERVER=ajh@repo-centos.cw-ngv.com REPO_DIR=www-secure/$repo REPO_DELETE_OLD=Y
 }
+
+alias make=cwc-make

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ROOT=$( cd $DIR/.. && pwd )
+
+for file in $(ls -A $ROOT/dotfiles/); do
+  if [[ ! -e ~/$file ]]; then
+    echo "~/$file -> $ROOT/dotfiles/$file"
+    ln -s $ROOT/dotfiles/$file ~/$file
+  else
+    echo "$file already exists. Skipping."
+  fi
+done
+
+
+remove-extra-section()
+{
+  filename=$1
+  tmp=$(mktemp --quiet ~/.dotfiles-setup.XXXXXX.tmp)
+  awk "BEGIN{ echo=1 } /# begin-dotfile-extra/{ echo=0 } { if (echo) { print } } /# end-dotfile-extra/{ echo = 1}" < $filename >$tmp
+  mv $tmp $filename
+}
+
+
+for file in $(ls -A $ROOT/dotfile_extras/); do
+  if [[ -f ~/$file ]]; then
+    echo "Modifying ~/$file"
+    remove-extra-section ~/$file
+    echo "# begin-dotfile-extra" >> ~/$file
+    cat $ROOT/dotfile_extras/$file >> ~/$file
+    echo "# end-dotfile-extra" >> ~/$file
+  else
+    echo "$file does not exist. Not creating."
+  fi
+done
+
+
+vim +BundleInstall +qall
