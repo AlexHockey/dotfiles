@@ -276,12 +276,6 @@ set formatoptions+=n
 
 " }}}
 
-" File-type Registrations {{{
-" Correct filetypes for debian special files and markdown.
-au BufNewFile,BufRead *.d set filetype=sh
-au BufNewFile,BufRead *.md set filetype=markdown
-" }}}
-
 " Typos and Ergonomics {{{
 
 " Map ; to : in command mode (as it's easier to type)
@@ -300,36 +294,6 @@ inoremap <F2> <Esc>:w<CR>
 
 " Refactorings {{{
 "
-" These look a bit mad, but they are effectively just macros that have been put
-" in .vimrc for future use.
-"
-" TODO: Move these to a C++ specfic file so that you can add other languages.
-
-" Wrap a visual-line block in an if() statement.
-vnoremap <leader>if "zdOif ()<cr>{<cr>}<esc>k"zp>`]<esc>kkla
-
-" 'Unwrap' a text block. E.g.
-"
-" Cursor is here.
-"   |
-"   |
-"   V
-"   if (foo)
-"   {
-"     bar
-"   }
-"
-" Typing `<leader>uw` produces:
-"
-"  bar
-nnoremap <leader>uw ^mz/{<cr>"zdi{V'zd"zP<`]:noh<cr>
-
-" Right justify the '\' in preprocessor definitions.
-vnoremap <leader>rj :s/\s*\\$/\=repeat(' ', 80-col('.')).'\'<cr>:noh<cr>
-
-" #if 0 out a visually selected block of text.
-vnoremap <leader>#if "zdO#if 0<cr>#endif<esc>"zP
-
 " Helper function to split function arguments onto multiple lines.
 " Turns
 "   foo(1, 2, 3)
