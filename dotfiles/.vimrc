@@ -36,7 +36,7 @@ Plugin 'vim-indent-object'
 Plugin 'kana/vim-textobj-user'
 Plugin 'glts/vim-textobj-comment'
 Plugin 'AlexHockey/current-function.vim'
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
 
 " Language-specific plugins.
 Plugin 'vim-ruby/vim-ruby'
@@ -50,7 +50,6 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'cespare/vim-toml'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'vim-airline/vim-airline'
 
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
@@ -62,6 +61,9 @@ Plugin 'haishanh/night-owl.vim'
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Plugin 'Valloric/YouCompleteMe'
 endif
+
+" And finally, the clearwater plugin
+Plugin 'file:///home/alex/src/clearwater.vim'
 
 call vundle#end()
 
@@ -248,12 +250,6 @@ set list
 set listchars=tab:▸\ ,
 let &showbreak='▸ '
 
-" By default tabs are 2 characters, replace tabs with spaces.  These can be
-" overwridden by language-specific files in the ftplugin directory.
-set shiftwidth=2
-set tabstop=2
-set expandtab
-
 " Strip trailing whitespace on save - for all file types.
 " See http://vim.wikia.com/wiki/Remove_unwanted_spaces
 autocmd BufWritePre * :%s/\s\+$//e
@@ -376,9 +372,6 @@ nmap <Leader>fr :<C-U>CtrlPMRU<CR>
 " Change the completion trigger to not interfere with YCM
 let g:UltiSnipsExpandTrigger="<c-j>"
 
-" Use the snippets in ~/.vim/snippets in addition to built in snippets.
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
-
 " Shortcut to go straight to the ultisnips folder (makes it easier to add new
 " snippets).
 nnoremap <leader>us :e ~/.vim/mysnippets<cr>
@@ -393,12 +386,6 @@ let g:ycm_echo_current_diagnostic=0
 
 " Don't complete in comments
 let g:ycm_complete_in_comments=0
-
-" Don't have YCM prompt every time it loads a .ycm_extra_conf.py file.
-let g:ycm_confirm_extra_conf = 0
-
-" Use the same YCM config everywhere.
-let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
 
 " The YcmCompleter has a bunch of useful functions. Map some of the more commen
 " ones to keybindings.
