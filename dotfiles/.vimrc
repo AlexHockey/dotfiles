@@ -41,7 +41,7 @@ Plugin 'vim-airline/vim-airline'
 " Language-specific plugins.
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'jnwhiteh/vim-golang'
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'greyblake/vim-preview'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/DoxygenToolkit.vim'
@@ -63,7 +63,7 @@ if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
 endif
 
 " And finally, the clearwater plugin
-Plugin 'file:///home/alex/src/clearwater.vim'
+Plugin 'git@gitlab.datcon.co.uk:ajh/clearwater.vim.git'
 
 call vundle#end()
 
