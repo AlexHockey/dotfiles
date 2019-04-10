@@ -37,6 +37,7 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'glts/vim-textobj-comment'
 Plugin 'AlexHockey/current-function.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'mattn/webapi-vim'
 
 " Language-specific plugins.
 Plugin 'vim-ruby/vim-ruby'
@@ -44,12 +45,17 @@ Plugin 'jnwhiteh/vim-golang'
 Plugin 'rust-lang/rust.vim'
 Plugin 'greyblake/vim-preview'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'vim-scripts/supp.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'cespare/vim-toml'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'chr4/nginx.vim'
+Plugin 'tyru/open-browser.vim'
+Plugin 'aklt/plantuml-syntax'
+Plugin 'weirongxu/plantuml-previewer.vim'
 
 " Colorschemes
 Plugin 'joshdick/onedark.vim'
@@ -241,6 +247,10 @@ set number
 
 " Ignore binary files in tab completion, Ctrl-P, etc.
 set wildignore+=*.o,*.so,*.git/*,*.svn/*
+
+" Only wrap text at word boundaries - wrapping in the middle of a word is rarely
+" useful.
+set linebreak
 " }}}
 
 " Whitespace Settings {{{
@@ -377,3 +387,12 @@ let g:DoxygenToolkit_commentType = "C++"
 " Disable folding the document by default - it's super annoying.
 let g:vim_markdown_folding_disabled = 1
 " }}
+
+" Rust Vim settings {{{
+let g:rust_clip_command = 'xclip -selection clipboard'
+" }}}
+
+" Vim markdown preview settings {{{
+let vim_markdown_preview_github = 1
+let vim_markdown_preview_toggle = 1
+" }}}
