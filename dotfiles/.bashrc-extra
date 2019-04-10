@@ -8,4 +8,24 @@ ssh-add ~/.ssh/xubuntu18.04-work >/dev/null 2>&1
 export EDITOR=vim
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
-alias make=cwc-make
+#alias make=cwc-make
+
+# Open a web-browser in the specified directory (defaults to the current
+# directory). This is useful for viewing HTML docs generated on the local
+# machine.
+web-browser()
+{
+    dir=.
+    if [[ "$1" ]]; then
+        dir=$1
+    fi
+
+    nohup firefox $dir 2>/dev/null & disown
+}
+
+build-upload-packages()
+{
+    REPO_DIR=www-secure/current REPO_SERVER=ajh@repo.cw-ngv.com REPO_DELETE_OLD=Y DEB_MAJOR_VERSION=999 make deb-only
+}
+
+PATH=$PATH:$HOME/bin
