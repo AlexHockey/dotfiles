@@ -20,58 +20,59 @@ nmap <leader>v :e ~/.vimrc<cr>
 " Plugins {{{
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle
-" required!
-Plugin 'VundleVim/Vundle.vim'
+" Make sure you use single quotes
 
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-abolish'
-Plugin 'vim-indent-object'
-Plugin 'kana/vim-textobj-user'
-Plugin 'glts/vim-textobj-comment'
-Plugin 'AlexHockey/current-function.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'mattn/webapi-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-abolish'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'kana/vim-textobj-user'
+Plug 'glts/vim-textobj-comment'
+Plug 'AlexHockey/current-function.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'mattn/webapi-vim'
 
 " Language-specific plugins.
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'jnwhiteh/vim-golang'
-Plugin 'rust-lang/rust.vim'
-Plugin 'greyblake/vim-preview'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-Plugin 'vim-scripts/supp.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'cespare/vim-toml'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'chr4/nginx.vim'
-Plugin 'tyru/open-browser.vim'
-Plugin 'aklt/plantuml-syntax'
-Plugin 'weirongxu/plantuml-previewer.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'jnwhiteh/vim-golang'
+Plug 'rust-lang/rust.vim'
+Plug 'greyblake/vim-preview'
+Plug 'plasticboy/vim-markdown'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'vim-scripts/supp.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'cespare/vim-toml'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'chr4/nginx.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
+Plug 'weirongxu/plantuml-previewer.vim'
 
 " Colorschemes
-Plugin 'joshdick/onedark.vim'
-Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'dracula/vim'
-Plugin 'haishanh/night-owl.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'dracula/vim'
+Plug 'haishanh/night-owl.vim'
 
 if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
-  Plugin 'Valloric/YouCompleteMe'
+  Plug 'Valloric/YouCompleteMe'
 endif
 
 " And finally, the clearwater plugin
-Plugin 'git@gitlab.datcon.co.uk:ajh/clearwater.vim.git'
+Plug 'git@gitlab.datcon.co.uk:ajh/clearwater.vim.git'
 
-call vundle#end()
+" Initialize plugin system
+call plug#end()
 
 " Use langauage-specific plugins and indentation rules.
 filetype plugin indent on
