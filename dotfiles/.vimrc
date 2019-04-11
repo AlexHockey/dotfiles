@@ -355,9 +355,9 @@ nnoremap <leader>us :e ~/.vim/mysnippets<cr>
 " YouCompleteMe settings {{{
 
 " Don't clutter the UI with compilation warnings/errors.
-let g:ycm_enable_diagnostic_signs=0
-let g:ycm_enable_diagnostic_highlighting=0
-let g:ycm_echo_current_diagnostic=0
+let g:ycm_enable_diagnostic_signs=1
+let g:ycm_enable_diagnostic_highlighting=1
+let g:ycm_echo_current_diagnostic=1
 
 " Don't complete in comments
 let g:ycm_complete_in_comments=0
