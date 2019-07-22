@@ -68,8 +68,12 @@ if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Plug 'Valloric/YouCompleteMe'
 endif
 
+" Defaul snippets
+Plug 'honza/vim-snippets'
+
 " And finally, the clearwater plugin
-Plug 'git@gitlab.datcon.co.uk:ajh/clearwater.vim.git'
+" I don't need this any more. Sad times.
+" Plug 'git@gitlab.datcon.co.uk:ajh/clearwater.vim.git'
 
 " Initialize plugin system
 call plug#end()
