@@ -79,3 +79,6 @@ GETs
 Grafana
 DBs
 SNMP
+webhook
+JSON
+alertmanager

@@ -45,7 +45,8 @@ Plug 'jnwhiteh/vim-golang'
 Plug 'rust-lang/rust.vim'
 Plug 'greyblake/vim-preview'
 Plug 'plasticboy/vim-markdown'
-Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'vim-scripts/supp.vim'
 Plug 'mustache/vim-mustache-handlebars'
@@ -56,6 +57,8 @@ Plug 'chr4/nginx.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'mfukar/robotframework-vim'
 
 " Colorschemes
 Plug 'joshdick/onedark.vim'
@@ -64,9 +67,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
 Plug 'haishanh/night-owl.vim'
 
-if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
+"if v:version >= 704  " YouCompleteMe requires a recent version of Vim.
   Plug 'Valloric/YouCompleteMe'
-endif
+"endif
+"Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', }
 
 " Defaul snippets
 Plug 'honza/vim-snippets'
@@ -236,13 +241,13 @@ set completeopt=longest,menuone
 set wildmode=longest,list,full
 
 " Put all the swap files in one place.
-set directory^=$HOME/.vim/tmp//
+set directory^=$HOME/.vimtmp//
 
 " Blow away all vim backups. Consists of:
 " - A function to actually remove the backups.
 " - A command to make the function easier to call.
 function! RemoveSwapFiles()
-  execute "! rm $HOME/.vim/tmp/*"
+  execute "! rm $HOME/.vimtmp/*"
 endfunction
 
 command! ClearSwap call RemoveSwapFiles()
@@ -391,13 +396,26 @@ let g:DoxygenToolkit_commentType = "C++"
 
 " Disable folding the document by default - it's super annoying.
 let g:vim_markdown_folding_disabled = 1
-" }}
+" }}}
 
 " Rust Vim settings {{{
 let g:rust_clip_command = 'xclip -selection clipboard'
+let g:rustfmt_autosave = 1
 " }}}
 
 " Vim markdown preview settings {{{
 let vim_markdown_preview_github = 1
 let vim_markdown_preview_toggle = 1
+" }}}
+
+" Language Server settings {{{
+set hidden
+let g:LanguageClient_serverCommands = {
+      \  'rust': ['rustup', 'run', 'stable', 'rls'],
+      \  'python': ['pyls'],
+      \}
+" }}}
+
+" Deoplete settings {{{
+let g:deoplete#enable_at_startup = 1
 " }}}

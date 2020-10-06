@@ -4,7 +4,7 @@
 [color]
 	ui = true
 [push]
-	default = nothing
+	default = simple
 [alias]
 	st = status
 	ci = commit
@@ -16,7 +16,9 @@
 	conflictstyle = diff3
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nvim
 [status]
 [log]
   decorate = short
+[push]
+  ff = only

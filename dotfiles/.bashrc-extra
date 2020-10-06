@@ -28,4 +28,4 @@ build-upload-packages()
     REPO_DIR=www-secure/current REPO_SERVER=ajh@repo.cw-ngv.com REPO_DELETE_OLD=Y DEB_MAJOR_VERSION=999 make deb-only
 }
 
-PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/go/bin
